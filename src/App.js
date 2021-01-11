@@ -8,7 +8,15 @@ import API from "./util/API";
 
 class App extends Component {
   state = {
+    search: "",
     employee: []
+  };
+
+  componentDidMount() {
+    API.getRandomEmployee()
+    .then(res => this.setState({ employee: res.data.results }))
+    .catch(err => console.log(err));
+    console.log(this.state.employee)
   };
 
 
@@ -17,7 +25,17 @@ class App extends Component {
       <Wrapper>
         <Header />
         <Search />
-        <Employees />
+        {this.state.employee.map(emp => (
+          <Employees 
+          key={emp.id.value}
+          firstname={emp.name.first}
+          lastname={emp.name.last}
+          email={emp.email}
+          phone={emp.phone}
+          dob={emp.dob.date}
+          image={emp.picture.thumbnail}
+          />
+        ))}
       </Wrapper>
   );
   }
