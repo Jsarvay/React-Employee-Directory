@@ -6,7 +6,7 @@ function Employees(props) {
         <div className="card-wrap">
             <div className="card">
                 <div className="card-image">
-                    <img alt={props.firstname} src={props.image}></img>
+                    <img alt={props.firstname} src={props.image} className="center"></img>
                 </div>
                 <div className="content">
                     <ul>

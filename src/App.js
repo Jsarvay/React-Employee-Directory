@@ -33,7 +33,7 @@ class App extends Component {
           email={emp.email}
           phone={emp.phone}
           dob={emp.dob.date}
-          image={emp.picture.thumbnail}
+          image={emp.picture.medium}
           />
         ))}
       </Wrapper>
