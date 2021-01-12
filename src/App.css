@@ -1,3 +1,19 @@
 html {
   background-color: black;
 }
+
+.table-div {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.table {
+  border: solid 2px white;
+  color: white;
+}
+
+th {
+  color: white;
+  align-content: center;
+  border: solid white 2px;
+}

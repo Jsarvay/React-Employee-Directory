@@ -9,8 +9,10 @@ function Search(props) {
                 name="search"
                 type="text"
                 placeholder="search"
-                className="form-control">
+                className="form-control"
+                onChange={props.handleInputChange}>
                 </input>
+                <button onClick={props.handleSearch} className="btn btn-primary">Search</button>
             </form>
         </div>
     )

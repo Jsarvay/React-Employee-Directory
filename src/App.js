@@ -8,7 +8,7 @@ import API from "./util/API";
 
 class App extends Component {
   state = {
-    search: "",
+    search: " ",
     employee: []
   };
 
@@ -19,12 +19,32 @@ class App extends Component {
     console.log(this.state.employee)
   };
 
+  handleInputChange = event => {
+    this.setState({search: event.target.value});
+  }
+
+  handleSearch = event => {
+    event.preventDefault();
+    const filtered = this.state.employee.filter(employee => employee.name.first === this.state.search);
+    console.log(filtered)
+    this.setState({ employee: filtered });
+  }
 
   render() {
     return (
       <Wrapper>
         <Header />
-        <Search />
+        <Search handleInputChange={this.handleInputChange} handleSearch={this.handleSearch} />
+        <div className="table-div">
+        <table className="table">
+          <tr>
+            <th></th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Date of Birth</th>
+          </tr>
         {this.state.employee.map(emp => (
           <Employees 
           key={emp.id.value}
@@ -33,9 +53,11 @@ class App extends Component {
           email={emp.email}
           phone={emp.phone}
           dob={emp.dob.date}
-          image={emp.picture.medium}
+          image={emp.picture.thumbnail}
           />
         ))}
+        </table>
+        </div>
       </Wrapper>
   );
   }

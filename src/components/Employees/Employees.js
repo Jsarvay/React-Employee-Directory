@@ -3,22 +3,14 @@ import "./style.css";
 
 function Employees(props) {
     return (
-        <div className="card-wrap">
-            <div className="card">
-                <div className="card-image">
-                    <img alt={props.firstname} src={props.image} className="center"></img>
-                </div>
-                <div className="content">
-                    <ul>
-                        <li><strong>Name: </strong>{props.firstname} {props.lastname}</li> 
-                        <li><strong>Email: </strong> {props.email}</li> 
-                        <li><strong>Phone: </strong> {props.phone}</li> 
-                        <li><strong>Date of Birth: </strong> {props.dob}</li>
-                    </ul>
-                </div>
-
-           </div>
-        </div>
+        <tr>
+            <th><img alt={props.firstname} src={props.image}></img></th>
+            <th>{props.firstname}</th>
+            <th>{props.lastname}</th>
+            <th>{props.email}</th>
+            <th>{props.phone}</th>
+            <th>{props.dob}</th>
+        </tr>
     )
 };
 
