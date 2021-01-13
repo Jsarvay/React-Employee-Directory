@@ -8,15 +8,17 @@ import API from "./util/API";
 
 class App extends Component {
   state = {
-    search: " ",
-    employee: []
+    search: "",
+    employee: [],
+    filter: []
   };
 
   componentDidMount() {
     API.getRandomEmployee()
-    .then(res => this.setState({ employee: res.data.results }))
+    .then(res => this.setState({ employee: res.data.results, filter: res.data.results }))
     .catch(err => console.log(err));
     console.log(this.state.employee)
+    console.log(this.state.filter)
   };
 
   handleInputChange = event => {
@@ -25,9 +27,12 @@ class App extends Component {
 
   handleSearch = event => {
     event.preventDefault();
-    const filtered = this.state.employee.filter(employee => employee.name.first === this.state.search);
+    const filtered = this.state.employee.filter(employee => employee.name.first.includes(this.state.search)
+    || employee.name.last.includes(this.state.search)
+    || employee.phone.includes(this.state.search)
+    || employee.email.includes(this.state.search));
     console.log(filtered)
-    this.setState({ employee: filtered });
+    this.setState({ filter: filtered });
   }
 
   render() {
@@ -43,16 +48,14 @@ class App extends Component {
             <th>Last Name</th>
             <th>Email</th>
             <th>Phone Number</th>
-            <th>Date of Birth</th>
           </tr>
-        {this.state.employee.map(emp => (
+        {this.state.filter.map(emp => (
           <Employees 
           key={emp.id.value}
           firstname={emp.name.first}
           lastname={emp.name.last}
           email={emp.email}
           phone={emp.phone}
-          dob={emp.dob.date}
           image={emp.picture.thumbnail}
           />
         ))}

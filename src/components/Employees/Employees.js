@@ -9,7 +9,6 @@ function Employees(props) {
             <th>{props.lastname}</th>
             <th>{props.email}</th>
             <th>{props.phone}</th>
-            <th>{props.dob}</th>
         </tr>
     )
 };
