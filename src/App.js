@@ -35,6 +35,42 @@ class App extends Component {
     this.setState({ filter: filtered });
   }
 
+  firstNameSearch = event => {
+    event.preventDefault();
+    const sort = this.state.filter.sort(function(a, b){
+      var nameA = a.name.first.toUpperCase(); // ignore upper and lowercase
+      var nameB = b.name.first.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+    
+      // names must be equal
+      return 0;
+    });
+    this.setState({filter: sort});
+  }
+
+  lastNameSearch = event => {
+    event.preventDefault();
+    const sort = this.state.filter.sort(function(a, b){
+      var nameA = a.name.last.toUpperCase(); // ignore upper and lowercase
+      var nameB = b.name.last.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+    
+      // names must be equal
+      return 0;
+    });
+    this.setState({filter: sort});
+  }
+
   render() {
     return (
       <Wrapper>
@@ -44,8 +80,8 @@ class App extends Component {
         <table className="table">
           <tr>
             <th></th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th><button className="sort-button" onClick={this.firstNameSearch}>First Name</button></th>
+            <th><button className="sort-button" onClick={this.lastNameSearch}>Last Name</button></th>
             <th>Email</th>
             <th>Phone Number</th>
           </tr>
